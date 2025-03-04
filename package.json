@@ -23,6 +23,7 @@
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
+    "@prisma/client": "6.4.1",
     "nest-winston": "^1.10.2",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
@@ -41,7 +42,6 @@
     "@types/express": "^5.0.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.10.7",
-    "@types/sequelize": "^4.28.20",
     "@types/supertest": "^6.0.2",
     "eslint": "^9.18.0",
     "eslint-config-prettier": "^10.0.1",
@@ -51,7 +51,7 @@
     "pg": "^8.13.3",
     "pg-hstore": "^2.3.4",
     "prettier": "^3.4.2",
-    "sequelize": "^6.37.5",
+    "prisma": "^6.4.1",
     "sequelize-typescript": "^2.1.6",
     "source-map-support": "^0.5.21",
     "supertest": "^7.0.0",
@@ -79,5 +79,14 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "@prisma/engines",
+      "esbuild"
+    ],
+    "onlyBuiltDependencies": [
+      "prisma"
+    ]
   }
 }
