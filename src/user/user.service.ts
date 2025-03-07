@@ -142,7 +142,7 @@ export class UserService {
         username: user.username,
       },
       data: {
-        token: 'N/A',
+        token: '',
       },
     });
 
