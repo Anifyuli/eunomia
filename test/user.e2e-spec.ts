@@ -1,15 +1,15 @@
+import { UserResponse } from '@/model/user.model';
+import { WebResponse } from '@/model/web.model';
+import { TestModule } from '@/test/test.module';
+import { TestService } from '@/test/test.service';
+import { ValidationFilter } from '@/validation/validation.filter';
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
-import { TestModule } from '@/test/test.module';
-import { TestService } from '@/test/test.service';
 import * as request from 'supertest';
+import { App } from 'supertest/types';
 import { Logger } from 'winston';
 import { AppModule } from '../src/app.module';
-import { WebResponse } from '@/model/web.model';
-import { UserResponse } from '@/model/user.model';
-import { ValidationFilter } from '@/validation/validation.filter';
-import { App } from 'supertest/types';
 
 describe('UserController (e2e)', () => {
   let app: INestApplication;

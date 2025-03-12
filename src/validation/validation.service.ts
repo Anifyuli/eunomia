@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ZodType, ZodError } from 'zod';
+import { ZodError, ZodType } from 'zod';
 
 @Injectable()
 export class ValidationService {
