@@ -4,15 +4,15 @@ import {
   UpdateUserRequest,
   UserResponse,
 } from '@/model/user.model';
-import { PrismaService } from '@/prisma/prisma.service';
 import { ValidationService } from '@/validation/validation.service';
 import { HttpException, Inject, Injectable } from '@nestjs/common';
+import { User } from '@prisma/client';
 import * as bcrypt from 'bcrypt';
 import { WINSTON_MODULE_PROVIDER } from 'nest-winston';
+import { PrismaService } from '@/prisma/prisma.service';
 import { v4 as uuid } from 'uuid';
 import { Logger } from 'winston';
 import { UserValidation } from './user.validation';
-import { User } from '@prisma/client';
 
 @Injectable()
 export class UserService {
@@ -136,8 +136,8 @@ export class UserService {
   }
 
   // logout method
-  async logout(user: User): Promise<UserResponse> {
-    const result = await this.prismaService.user.update({
+  async logout(user: User): Promise<void> {
+    await this.prismaService.user.update({
       where: {
         username: user.username,
       },
@@ -145,10 +145,5 @@ export class UserService {
         token: '',
       },
     });
-
-    return {
-      username: result.username,
-      name: result.name,
-    };
   }
 }
