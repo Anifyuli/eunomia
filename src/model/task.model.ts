@@ -11,4 +11,9 @@ export type CreateTaskRequest = Omit<TaskResponse, 'id'>;
 
 export type UpdateTaskRequest = TaskResponse;
 
-export type SearchTaskRequest = Omit<TaskResponse, 'id' | 'username'>;
+export type SearchTaskRequest = Partial<
+  Omit<TaskResponse, 'id' | 'username'>
+> & {
+  page?: number;
+  size?: number;
+};

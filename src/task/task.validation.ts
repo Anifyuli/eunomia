@@ -23,10 +23,10 @@ export class TaskValidation {
     status: z.boolean(),
   });
 
-  static readonly SEARCH: ZodType = z.object({
-    title: z.string().max(250),
-    description: z.string().max(350),
-    due_date: z.date(),
-    status: z.boolean(),
-  }) satisfies ZodType<SearchTaskRequest>;
+  static readonly SEARCH: ZodType<SearchTaskRequest> = z.object({
+    title: z.string().max(250).optional(),
+    description: z.string().max(350).optional(),
+    due_date: z.date().optional(),
+    status: z.boolean().optional(),
+  });
 }
