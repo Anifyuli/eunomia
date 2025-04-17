@@ -36,14 +36,15 @@ export class TestService {
     const existingUser = await this.getUser();
 
     if (!existingUser) {
-      await this.prismaService.user.create({
+      return await this.prismaService.user.create({
         data: {
           username: 'test',
           name: 'test',
-          password: await bcrypt.hash('test', 10),
+          password: await bcrypt.hash('testpass', 10),
           token: 'test',
         },
       });
     }
+    return existingUser;
   }
 }
