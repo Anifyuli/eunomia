@@ -16,23 +16,34 @@ datasource db {
 model User {
   id       Int     @id @default(autoincrement())
   username String  @unique @db.VarChar(100)
-  password String  @db.VarChar(100)
+  password String  @db.VarChar(255)
   name     String  @db.VarChar(100)
-  token    String @db.VarChar(100) @default("")
-  Task     Task[]
+  token    String?
+  tasks    Task[]
 
   @@map("users")
 }
 
+enum TaskStatus {
+  PENDING
+  IN_PROGRESS
+  COMPLETED
+}
+
 model Task {
-  id          Int      @id @default(autoincrement())
-  username    String   @db.VarChar(100)
-  title       String   @db.VarChar(100)
-  description String   @db.Text
-  due_date    DateTime @db.Date
-  status      Boolean  @db.Boolean
+  id          Int        @id @default(autoincrement())
+  user_id     Int        
+  title       String     @db.VarChar(100)
+  description String     @db.Text
+  due_date    DateTime   @db.Date
+  status      TaskStatus @default(PENDING)
+  created_at  DateTime   @default(now())
+  updated_at  DateTime   @updatedAt
 
-  user User @relation(fields: [username], references: [username])
+  user User @relation(fields: [user_id], references: [id])
 
+  @@index([user_id])
+  @@index([status])
+  @@index([due_date])
   @@map("tasks")
 }
