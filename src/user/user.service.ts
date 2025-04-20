@@ -52,7 +52,7 @@ export class UserService {
     return {
       username: user.username,
       name: user.name,
-      token: user.token,
+      token: user.token === null ? undefined : user.token,
     };
   }
 
@@ -90,7 +90,7 @@ export class UserService {
     return {
       username: updatedUser.username,
       name: updatedUser.name,
-      token: updatedUser.token,
+      token: updatedUser.token === null ? undefined : updatedUser.token,
     };
   }
 
